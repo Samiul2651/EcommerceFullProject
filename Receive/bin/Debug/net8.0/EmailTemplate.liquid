@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Order Confirmation</title>
+				<style>
+					/* General Reset */
+					* {
+					margin: 0;
+					padding: 0;
+					box-sizing: border-box;
+					}
+					body {
+					font-family: 'Arial', sans-serif;
+					line-height: 1.6;
+					background-color: #f3f4f6;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					min-height: 100vh;
+					padding: 20px;
+					}
+					.card {
+					background: khaki;
+					border-radius: 12px;
+					box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+					max-width: 700px;
+					width: 100%;
+					padding: 30px;
+					border: 1px solid #ddd;
+					}
+					h2 {
+					color: #2c3e50;
+					margin-bottom: 20px;
+					text-align: center;
+					font-size: 24px;
+					font-weight: 700;
+					}
+					p {
+					margin: 5px 0;
+					font-size: 16px;
+					color: #555;
+					}
+					strong {
+					color: #333;
+					}
+					.highlight {
+					color: #3498db;
+					font-weight: bold;
+					}
+					h3 {
+					color: #2980b9;
+					margin-top: 20px;
+					font-size: 20px;
+					border-bottom: 2px solid #2980b9;
+					padding-bottom: 5px;
+					}
+					.order-details {
+					width: 100%;
+					border-collapse: collapse;
+					margin-top: 15px;
+					font-size: 15px;
+					}
+					.order-details th, .order-details td {
+					border: 1px solid #ddd;
+					padding: 10px;
+					text-align: left;
+					}
+					.order-details th {
+					background-color: #3498db;
+					color: #fff;
+					font-weight: 600;
+					}
+					.order-details tr:nth-child(even) {
+					background-color: #f9f9f9;
+					}
+					.order-details tr:hover {
+					background-color: #f1f1f1;
+					}
+					.footer {
+					text-align: center;
+					margin-top: 20px;
+					color: #2c3e50;
+					font-size: 16px;
+					}
+					.footer p {
+					font-size: 18px;
+					color: #16a085;
+					font-weight: bold;
+					}
+				</style>
+			</head>
+	<body>
+		<div class="card">
+			<h2>Order Confirmation</h2>
+			<p>
+				<strong>ID:</strong>
+				<span class="highlight">{{Order.Id}}</span>
+			</p>
+			<p>
+				<strong>Customer Email:</strong>
+				<span class="highlight">{{Order.Email}}</span>
+			</p>
+			<p>
+				<strong>Order Time:</strong> {{Order.OrderTime}}
+			</p>
+			<p>
+				<strong>Total Price:</strong>
+				<span class="highlight">${{Order.Price}}</span>
+			</p>
+
+			<h3>Shipping Address</h3>
+			<p>{{Order.Address}}</p>
+			<p>
+				Phone: <span class="highlight">{{Order.PhoneNumber}}</span>
+			</p>
+
+			<h3>Products:</h3>
+			<table class='order-details'>
+				<tr>
+					<th>Product</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+				</tr>
+				{% for product in order.Products %}
+				<tr>
+					<td>{{product.Name}}</td>
+					<td>${{product.Price}}</td>
+					<td>{{product.Quantity}}</td>
+					<td>${{product.Quantity | multiply: product.Price }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			<div class="footer">
+				<p>Thank you for your purchase!</p>
+			</div>
+		</div>
+	</body>
+</html>
