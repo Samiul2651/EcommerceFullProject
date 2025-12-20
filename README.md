@@ -2,6 +2,8 @@
 
 A full-stack e-commerce backend built with ASP.NET Core, featuring layered architecture and event-driven processing.
 
+Frontend GitHub Repo: https://github.com/Samiul2651/EcommerceF
+
 ## Architecture
 
 | Layer | Description |
