@@ -87,7 +87,7 @@ namespace Business.Services
             IMongoCollection<T> _collection = _database.GetCollection<T>(collectionName);
             var list = await _collection.Find(p => true).ToListAsync();
             var obj = list.FirstOrDefault(filter);
-            Debug.Assert(obj != null, nameof(obj) + " != null");
+            //Debug.Assert(obj != null, nameof(obj) + " != null");
             return obj;
         }
 

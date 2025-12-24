@@ -19,6 +19,10 @@ namespace Business.Services
             try
             {
                 var customer = await _mongoDbService.GetObjectByFilter(nameof(Customer), (Func<Customer, bool>)Filter);
+                if(customer == null)
+                {
+                    return UpdateStatus.NotFound;
+                }
                 if (customer.Email != email)
                 {
                     return UpdateStatus.NotFound;
